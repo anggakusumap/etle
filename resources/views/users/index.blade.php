@@ -10,9 +10,10 @@
                 <table class="table table-bordered data-table-1 text-white">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>ID</th>
+                            <th>Waktu</th>
+                            <th>Jumlah</th>
+                            <th>Potensi (Rp.)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,9 +28,10 @@
                 <table class="table table-bordered data-table-2 text-white">
                     <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>ID</th>
+                        <th>Kamera</th>
+                        <th>Jumlah</th>
+                        <th>Potensi (Rp.)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,9 +46,10 @@
                 <table class="table table-bordered data-table-3 text-white">
                     <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>ID</th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                        <th>Potensi (Rp.)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,36 +66,53 @@
             var table1 = $('.data-table-1').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: {
+                    url: "{{ route('users.index') }}",
+                    data: { table_type: 'table1' }
+                },
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                ]
+                    {data: 'waktu', name: 'waktu'},
+                    {data: 'jumlah', name: 'jumlah'},
+                    {data: 'potensi', name: 'potensi'},
+                ],
+                paging: false,
+                searching: false
             });
 
             var table2 = $('.data-table-2').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: {
+                    url: "{{ route('users.index') }}",
+                    data: { table_type: 'table2' }
+                },
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                ]
+                    {data: 'kamera', name: 'kamera'},
+                    {data: 'jumlah', name: 'jumlah'},
+                    {data: 'potensi', name: 'potensi'},
+                ],
+                paging: false,
+                searching: false
             });
 
             var table3 = $('.data-table-3').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: {
+                    url: "{{ route('users.index') }}",
+                    data: { table_type: 'table3' }
+                },
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                ]
+                    {data: 'jenis', name: 'jenis'},
+                    {data: 'jumlah', name: 'jumlah'},
+                    {data: 'potensi', name: 'potensi'},
+                ],
+                paging: false,
+                searching: false
             });
-
         });
     </script>
 @endpush
