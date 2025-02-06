@@ -21,8 +21,8 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
 </head>
-<body class="font-sans antialiased bg-[#0a0d0f] text-white w-full mx-auto max-w-7xl min-h-screen flex flex-col items-center justify-center py-4">
-    <header class="bg-[#141719] rounded-sm flex flex-col gap-0 px-4 py-3 mb-4 w-full">
+<body class="font-sans antialiased bg-[#0a0d0f] text-white w-full mx-auto max-w-7xl p-4 lg:p-0">
+    <header class="bg-[#141719] rounded-sm flex flex-col gap-0 px-4 py-3 mb-4 mx-auto w-full">
         <p class="m-0">Dashboard ETLE</p>
         <p class="text-2xl font-bold m-0">POLDA</p>
     </header>

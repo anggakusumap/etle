@@ -111,9 +111,22 @@ class RiskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Risk $risk)
+    public function show($risk_code, Request $request)
     {
-        //
+        $risk = Risk::where('risk_code', $risk_code)->firstOrFail();
+
+        if ($request->ajax()) {
+            $data = Risk::where('risk_code', $risk_code)->select([
+                'plat',
+                'total_pelanggaran',
+                'denda_total',
+                'skor_risiko'
+            ]);
+
+            return DataTables::of($data)->make(true);
+        }
+
+        return view('risks.show', compact('risk'));
     }
 
     /**
