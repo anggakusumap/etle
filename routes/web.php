@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\RiskController;
 
-Route::get('/', [UserController::class, 'index'])->name('users.index');
+Route::get('/', [RiskController::class, 'index'])->name('risks.index');
