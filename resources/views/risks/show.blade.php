@@ -26,7 +26,7 @@
                                 <th>Plat</th>
                                 <th>Jumlah Pelanggaran</th>
                                 <th>Nominal Pelanggaran</th>
-                                <th>Skor Risiko</th>
+                                <th>Risk Score</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -51,7 +51,7 @@
                         data: 'denda_total',
                         name: 'denda_total',
                         render: function(data, type, row) {
-                            return 'IDR ' + new Intl.NumberFormat('id-ID').format(data);
+                            return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
                         }
                     },
                     {

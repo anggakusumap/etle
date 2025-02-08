@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Risk;
+use App\Models\Violate;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -56,20 +57,11 @@ class RiskController extends Controller
             $dataTableType = $request->query('table_type');
 
             if ($dataTableType === 'table1') {
-                $data = collect([
-                    ['id' => 1, 'waktu' => '06.00 - 09.00', 'jumlah' => 10, 'potensi' => 1000000],
-                    ['id' => 2, 'waktu' => '09.00 - 12.00', 'jumlah' => 1, 'potensi' => 2000000],
-                ]);
+                $data = $this->getTable1Data();
             } elseif ($dataTableType === 'table2') {
-                $data = collect([
-                    ['id' => 1, 'kamera' => 'AAA', 'jumlah' => 10, 'potensi' => 1000000],
-                    ['id' => 2, 'kamera' => 'BBB', 'jumlah' => 1, 'potensi' => 2000000],
-                ]);
+                $data = $this->getTable2Data();
             } elseif ($dataTableType === 'table3') {
-                $data = collect([
-                    ['id' => 1, 'jenis' => 'Jenis A', 'jumlah' => 10, 'potensi' => 1000000],
-                    ['id' => 2, 'jenis' => 'Jenis B', 'jumlah' => 1, 'potensi' => 2000000],
-                ]);
+                $data = $this->getTable3Data();
             } else {
                 $data = collect([]);
             }
@@ -78,6 +70,7 @@ class RiskController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
+
 
         return view('risks.index', compact(
             'riskX1Y1',
@@ -90,22 +83,6 @@ class RiskController extends Controller
             'riskX3Y2',
             'riskX3Y3',
         ));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -129,27 +106,96 @@ class RiskController extends Controller
         return view('risks.show', compact('risk'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Risk $risk)
+    private function getTable1Data()
     {
-        //
+        $timeRanges = [
+            '00:00-03:00' => ['00:00:00', '02:59:59'],
+            '03:00-06:00' => ['03:00:00', '05:59:59'],
+            '06:00-09:00' => ['06:00:00', '08:59:59'],
+            '09:00-12:00' => ['09:00:00', '11:59:59'],
+            '12:00-15:00' => ['12:00:00', '14:59:59'],
+            '15:00-18:00' => ['15:00:00', '17:59:59'],
+            '18:00-21:00' => ['18:00:00', '20:59:59'],
+            '21:00-24:00' => ['21:00:00', '23:59:59'],
+        ];
+
+        $data = collect();
+
+        foreach ($timeRanges as $label => $times) {
+            $count_hp = Violate::where('status', 'baru')
+                ->where('jenis_pelanggaran', 'Menggunakan HP')
+                ->whereTime('tanggal_pelanggaran', '>=', $times[0])
+                ->whereTime('tanggal_pelanggaran', '<=', $times[1])
+                ->count();
+
+            $count_sabuk = Violate::where('status', 'baru')
+                ->where('jenis_pelanggaran', 'Tidak menggunakan sabuk pengaman')
+                ->whereTime('tanggal_pelanggaran', '>=', $times[0])
+                ->whereTime('tanggal_pelanggaran', '<=', $times[1])
+                ->count();
+
+            $count_helm = Violate::where('status', 'baru')
+                ->where('jenis_pelanggaran', 'Tidak menggunakan helm')
+                ->whereTime('tanggal_pelanggaran', '>=', $times[0])
+                ->whereTime('tanggal_pelanggaran', '<=', $times[1])
+                ->count();
+
+            $potensi = ($count_hp * 750000) + ($count_sabuk * 250000) + ($count_helm * 25000);
+
+            $data->push([
+                'id' => $data->count() + 1,
+                'waktu' => $label,
+                'jumlah' => $count_hp + $count_sabuk + $count_helm,
+                'potensi' => $potensi,
+            ]);
+        }
+
+        return $data;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Risk $risk)
+    private function getTable2Data()
     {
-        //
+        $data = Violate::where('status', 'baru')
+            ->selectRaw('lokasi as kamera, COUNT(*) as jumlah,
+            SUM(CASE
+                WHEN jenis_pelanggaran = "Menggunakan HP" THEN 750000
+                WHEN jenis_pelanggaran = "Tidak menggunakan sabuk pengaman" THEN 250000
+                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 25000
+                ELSE 0
+            END) as potensi')
+            ->groupBy('lokasi')
+            ->get();
+
+        return $data->map(function ($item, $index) {
+            return [
+                'id' => $index + 1,
+                'kamera' => $item->kamera,
+                'jumlah' => $item->jumlah,
+                'potensi' => $item->potensi,
+            ];
+        });
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Risk $risk)
+    private function getTable3Data()
     {
-        //
+        $data = Violate::where('status', 'baru')
+            ->selectRaw('jenis_pelanggaran as jenis, COUNT(*) as jumlah,
+            SUM(CASE
+                WHEN jenis_pelanggaran = "Menggunakan HP" THEN 750000
+                WHEN jenis_pelanggaran = "Tidak menggunakan sabuk pengaman" THEN 250000
+                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 25000
+                ELSE 0
+            END) as potensi')
+            ->groupBy('jenis_pelanggaran')
+            ->get();
+
+        return $data->map(function ($item, $index) {
+            return [
+                'id' => $index + 1,
+                'jenis' => $item->jenis,
+                'jumlah' => $item->jumlah,
+                'potensi' => $item->potensi,
+            ];
+        });
     }
 }

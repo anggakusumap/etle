@@ -208,7 +208,13 @@
                     {data: 'id', name: 'id'},
                     {data: 'waktu', name: 'waktu'},
                     {data: 'jumlah', name: 'jumlah'},
-                    {data: 'potensi', name: 'potensi'},
+                    {
+                        data: 'potensi',
+                        name: 'potensi',
+                        render: function(data, type, row) {
+                            return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
+                        }
+                    },
                 ],
                 paging: false,
                 searching: false,
@@ -225,7 +231,13 @@
                     {data: 'id', name: 'id'},
                     {data: 'kamera', name: 'kamera'},
                     {data: 'jumlah', name: 'jumlah'},
-                    {data: 'potensi', name: 'potensi'},
+                    {
+                        data: 'potensi',
+                        name: 'potensi',
+                        render: function(data, type, row) {
+                            return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
+                        }
+                    },
                 ],
                 paging: false,
                 searching: false,
@@ -242,7 +254,13 @@
                     {data: 'id', name: 'id'},
                     {data: 'jenis', name: 'jenis'},
                     {data: 'jumlah', name: 'jumlah'},
-                    {data: 'potensi', name: 'potensi'},
+                    {
+                        data: 'potensi',
+                        name: 'potensi',
+                        render: function(data, type, row) {
+                            return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
+                        }
+                    },
                 ],
                 paging: false,
                 searching: false,
