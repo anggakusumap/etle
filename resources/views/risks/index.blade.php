@@ -292,8 +292,6 @@
                         orderable: false,
                         searchable: false,
                         render: function(data, type, row) {
-                            console.log('🚀🚀 row :>>', row)
-
                             return `<a href="/fouls/${row.jenis}" class="btn btn-primary">
                                         Detail
                                     </a>`;
