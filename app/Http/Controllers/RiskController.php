@@ -106,6 +106,18 @@ class RiskController extends Controller
         return view('risks.show', compact('risk'));
     }
 
+    public function showLocations($camera_code, Request $request){
+        $camera = $camera_code;
+        $jumlahPelanggaran = Violate::where('lokasi', $camera_code)->where('status', 'baru')->count();
+        if($request->ajax()){
+            $data = $this->getLocationsData($camera_code);
+
+            return DataTables::of($data)->make(true);
+        }
+
+        return view('risks.showLocations', compact('camera', 'jumlahPelanggaran'));
+    }
+
     private function getTable1Data()
     {
         $timeRanges = [
@@ -160,7 +172,7 @@ class RiskController extends Controller
             SUM(CASE
                 WHEN jenis_pelanggaran = "Menggunakan HP" THEN 750000
                 WHEN jenis_pelanggaran = "Tidak menggunakan sabuk pengaman" THEN 250000
-                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 25000
+                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 250000
                 ELSE 0
             END) as potensi')
             ->groupBy('lokasi')
@@ -183,7 +195,7 @@ class RiskController extends Controller
             SUM(CASE
                 WHEN jenis_pelanggaran = "Menggunakan HP" THEN 750000
                 WHEN jenis_pelanggaran = "Tidak menggunakan sabuk pengaman" THEN 250000
-                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 25000
+                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 250000
                 ELSE 0
             END) as potensi')
             ->groupBy('jenis_pelanggaran')
@@ -194,6 +206,34 @@ class RiskController extends Controller
                 'id' => $index + 1,
                 'jenis' => $item->jenis,
                 'jumlah' => $item->jumlah,
+                'potensi' => $item->potensi,
+            ];
+        });
+    }
+
+    private function getLocationsData($camera_code){
+        $data = Violate::where('status', 'baru')
+            ->where('lokasi', $camera_code)
+            ->selectRaw('
+            jenis_pelanggaran,
+            plat,
+            tanggal_pelanggaran,
+            SUM(CASE
+                WHEN jenis_pelanggaran = "Menggunakan HP" THEN 750000
+                WHEN jenis_pelanggaran = "Tidak menggunakan sabuk pengaman" THEN 250000
+                WHEN jenis_pelanggaran = "Tidak menggunakan helm" THEN 250000
+                ELSE 0
+            END) as potensi
+        ')
+            ->groupBy('plat', 'tanggal_pelanggaran', 'jenis_pelanggaran')
+            ->get();
+
+        return $data->map(function ($item, $index) {
+            return [
+                'id' => $index + 1,
+                'plat' => $item->plat,
+                'jenis_pelanggaran' => $item->jenis_pelanggaran,
+                'tanggal_pelanggaran' => $item->tanggal_pelanggaran,
                 'potensi' => $item->potensi,
             ];
         });

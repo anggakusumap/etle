@@ -4,19 +4,20 @@
 
 @section('content')
     <div class="flex flex-col-reverse lg:flex-row justify-center gap-6 w-full">
-        <div class="w-full lg:w-1/2">
+        <div class="w-full lg:w-[55%]">
             <div class="flex flex-col gap-4">
                 <div class="card p-3 rounded-lg" style="background: #141719; color: white">
                     <div class="card-header text-xl font-bold">Per Range Waktu</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data-table-1 text-white">
+                            <table class="table table-bordered data-range-waktu text-white">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Waktu</th>
                                     <th>Jumlah</th>
                                     <th>Potensi (Rp.)</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -30,13 +31,14 @@
                     <div class="card-header text-xl font-bold">Per Lokasi</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data-table-2 text-white">
+                            <table class="table table-bordered data-lokasi text-white">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Kamera</th>
                                     <th>Jumlah</th>
                                     <th>Potensi (Rp.)</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,13 +52,14 @@
                     <div class="card-header text-xl font-bold">Per Jenis Pelanggaran</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data-table-3 text-white">
+                            <table class="table table-bordered data-jenis-pelanggaran text-white">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Jenis</th>
                                     <th>Jumlah</th>
                                     <th>Potensi (Rp.)</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -68,7 +71,7 @@
             </div>
         </div>
 
-        <div id="risk_matrix" class="relative h-fit w-full lg:w-1/2 text-center bg-[#141719] rounded-sm px-4 py-8">
+        <div id="risk_matrix" class="relative h-fit w-full lg:w-[45%] text-center bg-[#141719] rounded-sm px-4 py-8">
                 <h1 class="text-2xl font-bold mb-4">Risk Matrix - Distribusi Kendaraan</h1>
                 <div class="flex justify-center">
                     <div class="grid grid-cols-4 w-full max-w-4xl">
@@ -197,7 +200,7 @@
 @push('scripts')
     <script type="text/javascript">
         $(function () {
-            $('.data-table-1').DataTable({
+            $('.data-range-waktu').DataTable({
                 processing: false,
                 serverSide: true,
                 ajax: {
@@ -215,12 +218,23 @@
                             return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
                         }
                     },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            return `<a href="/times/${row.id}" class="btn btn-primary">
+                                        Detail
+                                    </a>`;
+                        }
+                    }
                 ],
                 paging: false,
                 searching: false,
             });
 
-            $('.data-table-2').DataTable({
+            $('.data-lokasi').DataTable({
                 processing: false,
                 serverSide: true,
                 ajax: {
@@ -238,12 +252,23 @@
                             return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
                         }
                     },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            return `<a href="/locations/${row.kamera}" class="btn btn-primary">
+                                        Detail
+                                    </a>`;
+                        }
+                    }
                 ],
                 paging: false,
                 searching: false,
             });
 
-            $('.data-table-3').DataTable({
+            $('.data-jenis-pelanggaran').DataTable({
                 processing: false,
                 serverSide: true,
                 ajax: {
@@ -261,6 +286,19 @@
                             return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
                         }
                     },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            console.log('🚀🚀 row :>>', row)
+
+                            return `<a href="/fouls/${row.jenis}" class="btn btn-primary">
+                                        Detail
+                                    </a>`;
+                        }
+                    }
                 ],
                 paging: false,
                 searching: false,
