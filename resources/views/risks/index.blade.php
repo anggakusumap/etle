@@ -224,7 +224,7 @@
                         orderable: false,
                         searchable: false,
                         render: function(data, type, row) {
-                            return `<a href="/times/${row.id}" class="btn btn-primary">
+                            return `<a href="/times/${row.waktu}" class="btn btn-primary">
                                         Detail
                                     </a>`;
                         }

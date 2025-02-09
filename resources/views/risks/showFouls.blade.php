@@ -33,6 +33,8 @@
                         <tr>
                             <th>Plat</th>
                             <th>Lokasi</th>
+                            <th>Tipe Kendaraan</th>
+                            <th>Warna Kendaraan</th>
                             <th>Tanggal Pelanggaran</th>
                             <th>Potensi</th>
                         </tr>
@@ -55,6 +57,8 @@
                 columns: [
                     { data: 'plat', name: 'plat' },
                     { data: 'lokasi', name: 'lokasi' },
+                    { data: 'tipe_kendaraan', name: 'tipe_kendaraan' },
+                    { data: 'warna_kendaraan', name: 'warna_kendaraan' },
                     { data: 'tanggal_pelanggaran', name: 'tanggal_pelanggaran' },
                     {
                         data: 'potensi',

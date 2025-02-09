@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '' . $camera)
+@section('title', '' . $timeRange)
 
 @section('content')
     <div class="w-full">
@@ -14,9 +14,9 @@
         <div class="card p-3 rounded-lg mt-4" style="background: #141719; color: white">
             <div class="card-header flex flex-col" style="background: #141719">
                 <p class="text-2xl">
-                    Lokasi :
+                    Time Range :
                     <span class="font-bold">
-                        {{$camera}}
+                        {{$timeRange}}
                     </span>
                 </p>
                 <p class="text-xl -mt-3">
@@ -32,9 +32,9 @@
                         <thead>
                         <tr>
                             <th>Plat</th>
+                            <th>Lokasi</th>
                             <th>Tipe Kendaraan</th>
                             <th>Warna Kendaraan</th>
-                            <th>Jenis Pelanggaran</th>
                             <th>Tanggal Pelanggaran</th>
                             <th>Potensi</th>
                         </tr>
@@ -53,12 +53,12 @@
             $('.data-table-show').DataTable({
                 processing: false,
                 serverSide: true,
-                ajax: "{{ route('locations.show', $camera) }}",
+                ajax: "{{ route('times.show', $timeRange) }}",
                 columns: [
                     { data: 'plat', name: 'plat' },
+                    { data: 'lokasi', name: 'lokasi' },
                     { data: 'tipe_kendaraan', name: 'tipe_kendaraan' },
                     { data: 'warna_kendaraan', name: 'warna_kendaraan' },
-                    { data: 'jenis_pelanggaran', name: 'jenis_pelanggaran' },
                     { data: 'tanggal_pelanggaran', name: 'tanggal_pelanggaran' },
                     {
                         data: 'potensi',
