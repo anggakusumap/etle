@@ -14,41 +14,41 @@ class RiskController extends Controller
      */
     public function index(Request $request)
     {
-        $riskX1Y1 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX1Y1 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X1Y1')
             ->groupBy('risk_code')
             ->first();
-        $riskX1Y2 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX1Y2 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X1Y2')
             ->groupBy('risk_code')
             ->first();
-        $riskX1Y3 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX1Y3 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X1Y3')
             ->groupBy('risk_code')
             ->first();
 
-        $riskX2Y1 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX2Y1 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X2Y1')
             ->groupBy('risk_code')
             ->first();
-        $riskX2Y2 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX2Y2 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X2Y2')
             ->groupBy('risk_code')
             ->first();
-        $riskX2Y3 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX2Y3 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X2Y3')
             ->groupBy('risk_code')
             ->first();
 
-        $riskX3Y1 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX3Y1 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X3Y1')
             ->groupBy('risk_code')
             ->first();
-        $riskX3Y2 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX3Y2 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X3Y2')
             ->groupBy('risk_code')
             ->first();
-        $riskX3Y3 = Risk::select('risk_code', \DB::raw('SUM(total_pelanggaran) as total'))
+        $riskX3Y3 = Risk::select('risk_code', \DB::raw('COUNT(*) as total'))
             ->where('risk_code', 'X3Y3')
             ->groupBy('risk_code')
             ->first();
@@ -116,7 +116,7 @@ class RiskController extends Controller
             '12:00-15:00' => ['12:00:00', '14:59:59'],
             '15:00-18:00' => ['15:00:00', '17:59:59'],
             '18:00-21:00' => ['18:00:00', '20:59:59'],
-            '21:00-24:00' => ['21:00:00', '23:59:59'],
+            '21:00-00:00' => ['21:00:00', '23:59:59'],
         ];
 
         $data = collect();
