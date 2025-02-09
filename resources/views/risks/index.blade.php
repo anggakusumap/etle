@@ -11,14 +11,14 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered data-range-waktu text-white">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Waktu</th>
-                                    <th>Jumlah</th>
-                                    <th>Potensi (Rp.)</th>
-                                    <th>Action</th>
-                                </tr>
+                                <thead class="bg-white text-black">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Waktu</th>
+                                        <th>Jumlah</th>
+                                        <th>Potensi (Rp.)</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -32,14 +32,14 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered data-lokasi text-white">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Kamera</th>
-                                    <th>Jumlah</th>
-                                    <th>Potensi (Rp.)</th>
-                                    <th>Action</th>
-                                </tr>
+                                <thead class="bg-white text-black">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Kamera</th>
+                                        <th>Jumlah</th>
+                                        <th>Potensi (Rp.)</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -53,14 +53,14 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered data-jenis-pelanggaran text-white">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Jenis</th>
-                                    <th>Jumlah</th>
-                                    <th>Potensi (Rp.)</th>
-                                    <th>Action</th>
-                                </tr>
+                                <thead class="bg-white text-black">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Jenis</th>
+                                        <th>Jumlah</th>
+                                        <th>Potensi (Rp.)</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>

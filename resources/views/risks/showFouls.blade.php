@@ -29,15 +29,15 @@
             <div class="card-body -mt-3">
                 <div class="table-responsive w-100 d-block d-md-table">
                     <table class="table table-bordered data-table-show text-white">
-                        <thead>
-                        <tr>
-                            <th>Plat</th>
-                            <th>Lokasi</th>
-                            <th>Tipe Kendaraan</th>
-                            <th>Warna Kendaraan</th>
-                            <th>Tanggal Pelanggaran</th>
-                            <th>Potensi</th>
-                        </tr>
+                        <thead class="bg-white text-black">
+                            <tr>
+                                <th>Plat</th>
+                                <th>Lokasi</th>
+                                <th>Tipe Kendaraan</th>
+                                <th>Warna Kendaraan</th>
+                                <th>Tanggal Pelanggaran</th>
+                                <th>Potensi</th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
