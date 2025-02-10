@@ -17,7 +17,6 @@
                                         <th>Waktu</th>
                                         <th>Jumlah</th>
                                         <th>Potensi (Rp.)</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +37,6 @@
                                         <th>Kamera</th>
                                         <th>Jumlah</th>
                                         <th>Potensi (Rp.)</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,10 +54,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th style="width: 25%">Jenis</th>
+                                        <th>Jenis</th>
                                         <th>Jumlah</th>
                                         <th>Potensi (Rp.)</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -209,24 +206,21 @@
                 },
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'waktu', name: 'waktu'},
+                    {
+                        data: 'waktu',
+                        name: 'waktu',
+                        render: function(data, type, row) {
+                            return `<a href="/times/${row.waktu}" style="text-decoration: underline !important;">
+                                        ${row.waktu}
+                                    </a>`;
+                        }
+                    },
                     {data: 'jumlah', name: 'jumlah'},
                     {
                         data: 'potensi',
                         name: 'potensi',
                         render: function(data, type, row) {
                             return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
-                        }
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        render: function(data, type, row) {
-                            return `<a href="/times/${row.waktu}" class="btn btn-primary">
-                                        Detail
-                                    </a>`;
                         }
                     }
                 ],
@@ -243,7 +237,15 @@
                 },
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'kamera', name: 'kamera'},
+                    {
+                        data: 'kamera',
+                        name: 'kamera',
+                        render: function(data, type, row) {
+                            return `<a href="/locations/${row.kamera}" style="text-decoration: underline !important;">
+                                        ${row.kamera}
+                                    </a>`;
+                        }
+                    },
                     {data: 'jumlah', name: 'jumlah'},
                     {
                         data: 'potensi',
@@ -252,17 +254,6 @@
                             return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
                         }
                     },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        render: function(data, type, row) {
-                            return `<a href="/locations/${row.kamera}" class="btn btn-primary">
-                                        Detail
-                                    </a>`;
-                        }
-                    }
                 ],
                 paging: false,
                 searching: false,
@@ -277,24 +268,21 @@
                 },
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'jenis', name: 'jenis'},
+                    {
+                        data: 'jenis',
+                        name: 'jenis',
+                        render: function(data, type, row) {
+                            return `<a href="/fouls/${row.jenis}" style="text-decoration: underline !important;">
+                                        ${row.jenis}
+                                    </a>`;
+                        }
+                    },
                     {data: 'jumlah', name: 'jumlah'},
                     {
                         data: 'potensi',
                         name: 'potensi',
                         render: function(data, type, row) {
                             return 'Rp. ' + new Intl.NumberFormat('id-ID').format(data);
-                        }
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        render: function(data, type, row) {
-                            return `<a href="/fouls/${row.jenis}" class="btn btn-primary">
-                                        Detail
-                                    </a>`;
                         }
                     }
                 ],

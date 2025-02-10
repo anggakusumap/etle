@@ -4,18 +4,20 @@
 
 @section('content')
     <div class="w-full">
-            <div class="flex justify-end">
-                <a href="{{ url('/') }}">
-                    <button class="bg-[#3A1CC3] px-10 py-2 rounded-sm font-bold text-white hover:bg-blue-700 transition">
-                        BACK
-                    </button>
-                </a>
-            </div>
         <div class="card p-3 rounded-lg mt-4" style="background: #141719; color: white">
-            <div class="card-header text-center flex justify-center gap-2 text-2xl " style="background: #141719">
-                RISK CODE :
-                <p class="font-bold">
-                    {{$risk->risk_code}}
+            <div class="card-header" style="background: #141719">
+                <div class="flex justify-end">
+                    <a href="{{ url('/') }}">
+                        <button class="bg-[#3A1CC3] px-3 py-2 rounded-sm font-bold text-white hover:bg-blue-700 transition text-sm">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> BACK
+                        </button>
+                    </a>
+                </div>
+                <p class="text-center text-2xl">
+                    RISK CODE :
+                    <span class="font-bold">
+                        {{$risk->risk_code}}
+                    </span>
                 </p>
             </div>
             <div class="card-body -mt-3">

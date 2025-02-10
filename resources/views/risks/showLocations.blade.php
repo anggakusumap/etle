@@ -4,15 +4,15 @@
 
 @section('content')
     <div class="w-full">
-        <div class="flex justify-end">
-            <a href="{{ url('/') }}">
-                <button class="bg-[#3A1CC3] px-10 py-2 rounded-sm font-bold text-white hover:bg-blue-700 transition">
-                    BACK
-                </button>
-            </a>
-        </div>
         <div class="card p-3 rounded-lg mt-4" style="background: #141719; color: white">
-            <div class="card-header flex flex-col" style="background: #141719">
+            <div class="card-header" style="background: #141719">
+                <div class="flex justify-end">
+                    <a href="{{ url('/') }}">
+                        <button class="bg-[#3A1CC3] px-3 py-2 rounded-sm font-bold text-white hover:bg-blue-700 transition text-sm">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> BACK
+                        </button>
+                    </a>
+                </div>
                 <p class="text-2xl">
                     Lokasi :
                     <span class="font-bold">
