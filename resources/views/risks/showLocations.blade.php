@@ -50,7 +50,6 @@
         $(function () {
             $('.data-table-show').DataTable({
                 processing: false,
-                serverSide: true,
                 ajax: "{{ route('locations.show', $camera) }}",
                 columns: [
                     { data: 'plat', name: 'plat' },

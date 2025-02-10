@@ -51,7 +51,6 @@
         $(function () {
             $('.data-table-show').DataTable({
                 processing: false,
-                serverSide: true,
                 ajax: "{{ route('fouls.show', $fouls) }}",
                 columns: [
                     { data: 'plat', name: 'plat', searchable: true },

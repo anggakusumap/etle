@@ -52,7 +52,6 @@
         $(function () {
             $('.data-table-show').DataTable({
                 processing: false,
-                serverSide: true,
                 ajax: "{{ route('times.show', $timeRange) }}",
                 columns: [
                     { data: 'plat', name: 'plat' },

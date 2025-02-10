@@ -44,7 +44,6 @@
         $(function () {
             $('.data-table-show').DataTable({
                 processing: false,
-                serverSide: true,
                 ajax: "{{ route('risks.show', $risk->risk_code) }}",
                 columns: [
                     { data: 'plat', name: 'plat' },
