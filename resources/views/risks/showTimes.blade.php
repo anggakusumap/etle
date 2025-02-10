@@ -14,7 +14,7 @@
         <div class="card p-3 rounded-lg mt-4" style="background: #141719; color: white">
             <div class="card-header flex flex-col" style="background: #141719">
                 <p class="text-2xl">
-                    Waktu Pelanggarann :
+                    Waktu Pelanggaran :
                     <span class="font-bold">
                         {{$timeRange}}
                     </span>
