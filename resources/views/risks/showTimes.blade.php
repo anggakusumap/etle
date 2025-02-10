@@ -14,7 +14,7 @@
         <div class="card p-3 rounded-lg mt-4" style="background: #141719; color: white">
             <div class="card-header flex flex-col" style="background: #141719">
                 <p class="text-2xl">
-                    Time Range :
+                    Waktu Pelanggaran :
                     <span class="font-bold">
                         {{$timeRange}}
                     </span>
@@ -28,15 +28,15 @@
             </div>
             <div class="card-body -mt-3">
                 <div class="table-responsive w-100 d-block d-md-table">
-                    <table class="table table-bordered data-table-show text-white">
-                        <thead class="bg-white text-black">
+                    <table class="table data-table-show text-white">
+                        <thead>
                             <tr>
                                 <th>Plat</th>
                                 <th>Lokasi</th>
                                 <th>Tipe Kendaraan</th>
                                 <th>Warna Kendaraan</th>
                                 <th>Tanggal Pelanggaran</th>
-                                <th>Potensi</th>
+                                <th>Potensi (Rp.)</th>
                             </tr>
                         </thead>
                         <tbody></tbody>

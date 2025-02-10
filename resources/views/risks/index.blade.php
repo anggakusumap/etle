@@ -10,8 +10,8 @@
                     <div class="card-header text-xl font-bold">Per Range Waktu</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data-range-waktu text-white">
-                                <thead class="bg-white text-black">
+                            <table class="table data-range-waktu text-white">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Waktu</th>
@@ -31,8 +31,8 @@
                     <div class="card-header text-xl font-bold">Per Lokasi</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data-lokasi text-white">
-                                <thead class="bg-white text-black">
+                            <table class="table data-lokasi text-white">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Kamera</th>
@@ -52,11 +52,11 @@
                     <div class="card-header text-xl font-bold">Per Jenis Pelanggaran</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered data-jenis-pelanggaran text-white">
-                                <thead class="bg-white text-black">
+                            <table class="table data-jenis-pelanggaran text-white">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Jenis</th>
+                                        <th style="width: 25%">Jenis</th>
                                         <th>Jumlah</th>
                                         <th>Potensi (Rp.)</th>
                                         <th>Action</th>

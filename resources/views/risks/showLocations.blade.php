@@ -28,15 +28,13 @@
             </div>
             <div class="card-body -mt-3">
                 <div class="table-responsive w-100 d-block d-md-table">
-                    <table class="table table-bordered data-table-show text-white">
-                        <thead class="bg-white text-black">
+                    <table class="table data-table-show text-white">
+                        <thead>
                             <tr>
                                 <th>Plat</th>
                                 <th>Tipe Kendaraan</th>
                                 <th>Warna Kendaraan</th>
-                                <th>Jenis Pelanggaran</th>
-                                <th>Tanggal Pelanggaran</th>
-                                <th>Potensi</th>
+                                <th>Potensi (Rp.)</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -58,8 +56,6 @@
                     { data: 'plat', name: 'plat' },
                     { data: 'tipe_kendaraan', name: 'tipe_kendaraan' },
                     { data: 'warna_kendaraan', name: 'warna_kendaraan' },
-                    { data: 'jenis_pelanggaran', name: 'jenis_pelanggaran' },
-                    { data: 'tanggal_pelanggaran', name: 'tanggal_pelanggaran' },
                     {
                         data: 'potensi',
                         name: 'potensi',

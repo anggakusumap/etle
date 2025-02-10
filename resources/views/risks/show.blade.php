@@ -20,7 +20,7 @@
             </div>
             <div class="card-body -mt-3">
                 <div class="table-responsive w-100 d-block d-md-table">
-                    <table class="table table-bordered data-table-show text-white">
+                    <table class="table data-table-show text-white">
                         <thead>
                             <tr>
                                 <th>Plat</th>
